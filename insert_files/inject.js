@@ -27,7 +27,7 @@ function propneut_getAlternatives(){
         var current_location=window.location.href;
         var pageinfo = propneut_inspectPage();
         var textidentifier=pageinfo.textidentifier;
-        var url="<propneut_base_url>/extension_pages/get_alternatives.php?no_cache_dummy="+currentTimestamp;
+        var url="<propneut_base_url>/extension_pages/get_alternatives?no_cache_dummy="+currentTimestamp;
         jQuery.ajax({
           url:url,
           data:{current_location:current_location, textidentifier:textidentifier, propneut_ajax_sessionid:'<propneut_session_id>'},
@@ -56,7 +56,7 @@ function propneut_gotAlternatives(data, textStatus, jqXHR){
 }
 
 function propneut_gotAlternativesFail(jqXHR, textStatus, errorThrown){
-	alert(jqXHR.responseText);
+	console.log('propneut_gotAlternativesFail: '+jqXHR.responseText);
     getAlternativesRetries++;
     if(getAlternativesRetries<maxGetAlternativesRetries){
         propneut_getAlternatives();    
@@ -447,7 +447,7 @@ function propneut_hideAllAntidotesList(){
 /////////////////////// reload_captcha_image
 
 function propneut_reloadCaptchaImage(){
-    document.getElementById('propneut_captcha_image').src='<propneut_base_url>/includes/captcha/get_captcha_image.php';
+    document.getElementById('propneut_captcha_image').src='<propneut_base_url>/includes/captcha/get_captcha_image';
 }
 
 /////////////////////// propneut_getAlternativesHTML
