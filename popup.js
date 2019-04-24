@@ -173,6 +173,8 @@ function getTagsForUrl_success(data, textStatus, jqXHR){
 		}
 		
 		jQuery('#poup_header').html(selectedTab.url);
+		jQuery('#poup_header').attr('title', selectedTab.url);
+		jQuery('[data-toggle="tooltip"]').tooltip();
 }
 
 function getTagsForUrl_error(jqXHR, textStatus, errorThrown){
@@ -288,7 +290,7 @@ function propneut_post_neutralizer_success(data, textStatus, jqXHR, propaganda, 
 	});
 }
 
-function propneut_post_neutralizer_error(data, textStatus, jqXHR){
+function propneut_post_neutralizer_error(jqXHR, textStatus, errorThrown){
 	jQuery('#popup_maincontent').html('Something went wrong...');
 }
 
@@ -399,7 +401,7 @@ function post_gotoStep1(){
 
 function post_gotoStep2(){
 	jQuery('.step_wrapper').css('display','none');
-	jQuery('#step_wrapper_1').css('display','');
+	//jQuery('#step_wrapper_1').css('display','');
 	jQuery('#step_wrapper_3').css('display','');
 }
 

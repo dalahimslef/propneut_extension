@@ -3,103 +3,6 @@
   <head>
 	<meta charset="UTF-8">
     <title>PropNøyt</title>
-    <style>
-     body {
-		padding: 10px;
-		width: 260px;
-		margin: 5px;
-		background-color: #dedede;
-    }
-	
-	button{
-		margin-top: 10px;
-		width: 100%;
-		background-color: #57b101;
-		color: white;
-		padding: 10px;
-		border: 2px solid #4a9800;
-		text-transform: uppercase;
-		cursor: pointer;
-	}
-	
-	button:disabled,
-	button[disabled]{
-	    background-color: #aac78d;
-	    border: 2px solid #89b164;
-		color: #828282;
-	}
-	
-	#popup_maincontent{
-		  
-	}	
-		
-    #popup_maincontent select{
-		  width:100%;
-	}
-	  
-	.propneut_text_div{
-	}
-	  
-	.propneut_info_div{
-        border: 1px solid rgb(180, 180, 180);
-		background-color: rgb(233, 244, 255);
-		padding: 4px;
-		margin-bottom: 4px;
-		background-image: url(images/info_big.png);
-		background-repeat: no-repeat;
-		background-size: 50px;
-		background-position: right -15px top -10px;
-	}
-
-	.propneut_message_warning{
-		border:1px solid #FFCC0D;
-		background-color:#FFF7CF;
-		padding: 15px;
-		margin-bottom: 4px;
-		/*
-		background-image: url(images/warning.png);
-		background-repeat: no-repeat;
-		background-size: 50px;
-		background-position: right -15px top -10px;
-		*/
-	}
-	
-	.input_label{
-		font-weight: bold;
-		border-bottom: 1px solid black;
-		margin-bottom: 5px;
-		margin-top: 10px;
-	}
-	
-	.propneut_info_div_toggler{
-		float:right;
-		cursor:pointer;
-	}
-	
-	#poup_header{
-		overflow: hidden;
-		text-overflow: ellipsis;
-		width: 100%;
-		white-space: nowrap;
-	}
-	
-	.button_wrapper{
-		margin-top:10px;
-	}
-	
-	.step_button{
-		box-sizing:border-box;
-		width:45%;
-	}
-	
-	.left{
-		float:left;
-	}
-	
-	.right{
-		float:right;
-	}
-    </style>
 
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
@@ -107,8 +10,24 @@
       -
       - [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html
      -->
+	<link rel="stylesheet" href="bootstrap.css"> 
 	<script src="jquery-1.11.1.min.js"></script>
+	<script src="popper.min.js"></script>
+	<script src="bootstrap.min.js"></script>
     <script src="popup.js"></script>
+	
+	<style>
+     body {
+		width: 18rem;
+		margin: 10px;
+    }
+	
+	#poup_header{
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	</style>
   </head>
   <body>
   <div style="text-align:center;">
@@ -121,29 +40,28 @@
 <div style="clear:both;"-->
 
 <div id="loading_image_wrapper" class="wrapper_div" style="text-align:center;margin-top:30px;">
-<div class="propneut_text_div">
-Hold on...<br/>
-<img style="width:40px;" title="Loading..." src="images/loading_spinner.gif"/>
+<div class="spinner-border text-primary" role="status">
+  <span class="sr-only">Loading...</span>
 </div>
 <div style="clear:both;"></div>
 </div>
 <div style="clear:both;"></div>
  
  <div id="not_logged_in_wrapper" class="wrapper_div propneut_text_div" style="display:none;">
- <div class="propneut_message_warning">
+ <div class="alert alert-info" role="alert">
 You must be logged in to add antidotes
 </div>
-<button id="popup_login_button" style="margin-top:10px;width:100%;">Open login page</button>
+<button id="popup_login_button" type="button" class="btn btn-primary">Open login page</button>
 </div>
  
 <div id="no_alternative_info_tbody" class="wrapper_div propneut_text_div" style="display:none;">
-<div class="propneut_message_warning">
+<div class="alert alert-warning" role="alert">
 No alternative tabs open
 </div>
 </div>
 
 <div id="error_info_div" class="wrapper_div propneut_text_div" style="display:none;">
-<div class="propneut_message_warning">
+<div class="alert alert-warning" role="alert">
 En error occured.
 <div id="error_text_div">
 </div>
@@ -153,56 +71,97 @@ En error occured.
 <div id="popup_maincontent" class="wrapper_div" style="display:none;">
 
 <div class="step_wrapper" id="step_wrapper_1">
-<div class="input_label">Page to neutralize<span class="propneut_info_div_toggler">?</span></div>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Neutralize page</h5>
+    <h6 class="card-subtitle mb-2 text-muted" id="poup_header" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"></h6>
+    <p class="card-text">If you feel the info on this page is unbalenced or not truthful, you can post an alternative page</p>
+	<div class="alert alert-info" role="alert">
+Make sure your alternative page is open in another tab
+</div>
+    <!--a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a-->
+	<div id="propneut_url_list">
+<select id="neutralizer_select" class="custom-select">
+</select>
+</div>
+  </div>
+</div>
+
+<!--div class="input_label">Page to neutralize<span class="propneut_info_div_toggler">?</span></div>
 <div class="propneut_text_div propneut_info_div" style="display:none;">
 This is your current page. If you feel that this page is unbalanced you can post a link to altrnative information.
 Other Propneut users visting this page will be notified of any alternative pages that have been suggested.
 </div>
-<div id="poup_header"></div>
+<div id="poup_header"></div-->
 </div>
 
 <div class="step_wrapper" id="step_wrapper_2">
-<div class="input_label">Select your neutralizer<span class="propneut_info_div_toggler">?</span></div>
+<!--div class="input_label">Select your neutralizer<span class="propneut_info_div_toggler">?</span></div-->
 <!--img src="images/info.png" class="propneut_info_div_toggler" style="margin-left:3px;height:23px;cursor:pointer;"/-->
-<div class="propneut_text_div propneut_info_div" style="display:none;">
+<!--div class="propneut_text_div propneut_info_div" style="display:none;">
 These are the other pages you currently have open in other tabs. Select an alternative page from your list of open pages. 
-</div>
-<div id="propneut_url_list">
-<select id="neutralizer_select">
+</div-->
+<!--div id="propneut_url_list">
+<select id="neutralizer_select" class="custom-select">
 </select>
-</div>
+</div-->
 <div class="button_wrapper">
-<button type="button" id="goto_step_2_button" class="step_button" style="width:100%;" disabled="disabled">Continue</button>
+<button type="button" id="goto_step_2_button" class="btn btn-primary" disabled="disabled">Continue</button>
 <div style="clear:both;"></div>
 </div>
 </div>			
 
 <div class="step_wrapper" id="step_wrapper_3" style="display:none;">
 <div id="additional_form_elements">
-<div class="input_label">Topic of discussion<span class="propneut_info_div_toggler">?</span></div>
-<!--img src="images/info.png" class="propneut_info_div_toggler" style="margin-left:3px;height:23px;cursor:pointer;"/-->
-<div class="propneut_text_div propneut_info_div" style="display:none;">
-Select a word which describes the topic of the webpage.
-</div>   
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Topic of discussion</h5>
+    <p class="card-text">Select a word which describes the topic of the webpage</p>
+	
 <div id="tag_select_warpper">
-<select id="tag_select" style="width:100%;">
+<select id="tag_select" class="custom-select">
 </select>
 </div>
 <div id="new_tag_text_tr" style="display:none;">
-<input type="text" style="width:100%;" id="new_tag_text" placeholder="Enter topic...">
+<input type="text" id="new_tag_text" placeholder="Enter topic..." class="form-control" aria-label="Enter topic..." aria-describedby="basic-addon1">
 </div>
 </div>
 <div class="button_wrapper">
-<button type="button" id="goto_step_1_button" class="step_button left">Back</button>
-<button type="button" id="goto_step_3_button" class="step_button right" disabled="disabled">Continue</button>
+<button type="button" id="goto_step_1_button" class="btn btn-primary">Back</button>
+<button type="button" id="goto_step_3_button" class="btn btn-primary" disabled="disabled">Continue</button>
 <div style="clear:both;"></div>
 </div> 
-</div> 
+</div>
+</div>
+</div>   
 
 
 <div class="step_wrapper" id="step_wrapper_4" style="display:none;">
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Prove you are not a bot</h5>
+    <h6 class="card-subtitle mb-2 text-muted" id="poup_header" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"></h6>
+    <p class="card-text">Type the text you see</p>
+	
+	<div style="float:left;padding:5px;border:0px solid black;border-radius:7px;background-color:rgb(0,40,90);">
+    <img id="propneut_captcha_image" style="width:250px;height:70px;border:0px solid black;border-radius:5px;" src="images/loading_spinner.gif"/>
+    <div style="border:0px solid black;border-radius:5px;padding:5px;margin-top:5px;background-color:rgb(255,255,137);font-family:Arial, Helvetica, sans-serif;font-size:11px;">
+    <div style="width:200px;color:black;">
+    Type the letters you see in the image above
+    </div>
+    <input type="text" class="propneut_captcha_text_input" style="border:1px solid black;width:210px;float:left;margin-top:3px;text-transform:uppercase;">
+    <img id="propneut_reload_captcha_image" style="width:20px;float:right;margin-left:5px;cursor:pointer;" title="Get new text-image" src="images/reload.png" onclick="propneut_reloadCaptchaImage();"/>
+    <div style="clear:both;"></div>
+    </div>
+    </div>
+    </div>
+  </div>
+
 <!--captcha form-->
-<div class="input_label">Prove you are not a bot<span class="propneut_info_div_toggler">?</span></div>
+<!--div class="input_label">Prove you are not a bot<span class="propneut_info_div_toggler">?</span></div>
 <div class="propneut_text_div propneut_info_div" style="display:none;">
 Test
 </div> 
@@ -219,12 +178,12 @@ Test
     </div>
     </div>
     </div>
-<div style="clear:both;"></div>	
+<div style="clear:both;"></div-->	
 	<!--captcha form end-->
 
 <div class="button_wrapper">
-<button type="button" id="goto_step_2_button_2" class="step_button left">Back</button>
-<button type="button" id="antidote_submit_button" class="step_button right" disabled="disabled">Submit</button>
+<button type="button" id="goto_step_2_button_2" class="btn btn-primary">Back</button>
+<button type="button" id="antidote_submit_button" class="btn btn-primary" disabled="disabled">Submit</button>
 <div style="clear:both;"></div>
 </div>          
 

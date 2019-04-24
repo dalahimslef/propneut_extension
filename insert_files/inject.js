@@ -20,7 +20,7 @@ function propneut_makePropagandaCheck(){
     alert("propneut_makePropagandaCheck");
 }
 
-function propneut_getAlternatives(){  
+function propneut_getAlternatives(){ 
     if(propneut_includePageInCheck()){
         var d = new Date();
         var currentTimestamp = d.getTime();
