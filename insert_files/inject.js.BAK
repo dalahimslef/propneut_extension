@@ -370,7 +370,7 @@ function propneut_openEditListWindow(){
 function propneut_openAlternativesList(){   
     var p_url=jQuery('#open_alternatives_list_div').attr('p_url');
     var t_ident=jQuery('#edit_list_img').attr('t_ident');
-    var listUrl='<propneut_base_url>/antidote_list?p_url='+p_url+'&t_ident='+t_ident;
+    var listUrl='<propneut_base_url>/pages/antidote_list/antidote_list.php?p_url='+p_url+'&t_ident='+t_ident;
     window.open(listUrl);
 }
 
@@ -455,17 +455,7 @@ function propneut_reloadCaptchaImage(){
 function propneut_getAlternativesHTML(data){
 	var returnHTML='';
 	var ndx;
-	returnHTML=returnHTML+'<div class="card-pn">';
-	returnHTML=returnHTML+'<div class="card-body-pn">';
-	returnHTML=returnHTML+'<h5 class="card-title-pn">Neutralized page</h5>';
-	returnHTML=returnHTML+'<h6 class="card-subtitle-pn mb-2-pn text-muted-pn">Suggested alternative pages</h6>';
-	//returnHTML=returnHTML+'<p class="card-text">The information on this page is disputed. Other Propneut users have suggested the following alternative pages for a more balanced view on the topic</p>';
-	returnHTML=returnHTML+'<div class="alert-pn alert-danger-pn">The information on this page is disputed. Other Propneut users have suggested the following alternative pages for a more balanced view on the topic</div>';
-	//if(data.alternatives_div.total_alternatives_count>data.alternatives_div.display_list_count){
-		//returnHTML=returnHTML+'<p class="card-text">(Showing top '+data.alternatives_div.display_list_count+' of '+data.alternatives_div.total_alternatives_count+' suggested links)</p>';
-	//}
-	
-	//returnHTML=returnHTML+'<div style="position:relative;float:left;font-size:3em;font-weight:bold;">'+data.alternatives_div.p_url+'<img style="position:absolute;z-index:10;right:-80px;bottom:-10px;width:150px;opacity:0.6;filter:alpha(opacity=60);" src="<propneut_base_url>/images/stamp.png"/></div>';
+	returnHTML=returnHTML+'<div style="position:relative;float:left;font-size:3em;font-weight:bold;">'+data.alternatives_div.p_url+'<img style="position:absolute;z-index:10;right:-80px;bottom:-10px;width:150px;opacity:0.6;filter:alpha(opacity=60);" src="<propneut_base_url>/images/stamp.png"/></div>';
 	returnHTML=returnHTML+'<div style="clear:both;"></div>';
 	returnHTML=returnHTML+'<div>';
 	
@@ -477,23 +467,20 @@ function propneut_getAlternativesHTML(data){
 	returnHTML=returnHTML+'</ul>';
 	returnHTML=returnHTML+'</div>';
 	
-	returnHTML=returnHTML+'<div>';
-	//if(data.alternatives_div.total_alternatives_count>data.alternatives_div.display_list_count){
-		returnHTML=returnHTML+'<p class="card-text">[ Showing top '+data.alternatives_div.display_list_count+' of '+data.alternatives_div.total_alternatives_count+' suggested links ]</p>';
-		returnHTML=returnHTML+'<a href="javascript:void(0);"  class="card-link" id="open_alternatives_list_div" p_url="'+data.alternatives_div.p_url+'" t_ident="'+data.alternatives_div.t_ident+'" onclick="propneut_openAlternativesList();">See the whole list</a><br>';
-	//}
-	/*
+	returnHTML=returnHTML+'<div style="position:absolute;bottom:0px;">';
+	if(data.alternatives_div.total_alternatives_count>data.alternatives_div.display_list_count){
+		returnHTML=returnHTML+'<div>';
+		returnHTML=returnHTML+'Showing top '+data.alternatives_div.display_list_count+' of '+data.alternatives_div.total_alternatives_count+' suggested links.';
+		returnHTML=returnHTML+' See the whole list ';
+		returnHTML=returnHTML+'<span id="open_alternatives_list_div" p_url="'+data.alternatives_div.p_url+'" t_ident="'+data.alternatives_div.t_ident+'" style="cursor: pointer;color: blue;text-decoration: underline;" onclick="propneut_openAlternativesList();">here</span>';
+		returnHTML=returnHTML+'</div>';	
+	}
 	returnHTML=returnHTML+'<div>';
 	returnHTML=returnHTML+'To help maintain this list of links go ';
-    returnHTML=returnHTML+'<span onclick="window.open(\''+data.alternatives_div.edit_ranking_url+'\');">here</span>';
+    returnHTML=returnHTML+'<span style="cursor: pointer;color: blue;text-decoration: underline;" onclick="window.open(\''+data.alternatives_div.edit_ranking_url+'\');">here</span>';
     returnHTML=returnHTML+'</div>';
-	*/
-	returnHTML=returnHTML+'<a href="javascript:void(0);"  class="card-link" onclick="window.open(\''+data.alternatives_div.edit_ranking_url+'\');">Help edit list</a>';
-	
 	returnHTML=returnHTML+'</div>';
 	
-	returnHTML=returnHTML+'</div>';
-	returnHTML=returnHTML+'</div>';
 	returnHTML=returnHTML+'</div>';
 	
 	return returnHTML;

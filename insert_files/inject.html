@@ -1,4 +1,81 @@
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Slabo 27px">
+<!--link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Slabo 27px"-->
+
+<style type="text/css">
+.wrapper_pn {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+}
+
+.wrapper_pn h5{
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.wrapper_pn h5{
+    font-size: 1.25rem;
+}
+
+.wrapper_pn h6{
+    font-size: 1rem;
+}
+
+.wrapper_pn .card-pn {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  /*border: 1px solid rgba(0, 0, 0, 0.125);*/
+  border: 0px;
+  border-radius: 0.25rem;
+}
+
+.wrapper_pn .card-body-pn {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
+.wrapper_pn .card-title-pn {
+  margin-bottom: 0.75rem;
+}
+
+.wrapper_pn .card-subtitle-pn {
+  margin-top: -0.375rem;
+  margin-bottom: 0;
+}
+
+.wrapper_pn .text-muted-pn{
+    color: #6c757d!important;
+}
+
+.wrapper_pn .mb-2-pn{
+    margin-bottom: .5rem!important;
+}
+
+.wrapper_pn .alert-danger-pn {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+.wrapper_pn .alert-pn {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+</style>
 
 
 
@@ -13,26 +90,19 @@
 
 <div class="propneut_propaganda_saver" style="margin:0;position:relative;top:0px;left:0px;width:100%;height:100%;box-sizing:border-box;box-shadow:4px 10px 5px rgba(0,0,0,0.7);border:1px solid black;border-radius:0px;font-family:'Slabo 27px', serif;text-align:left;">
 
-<div style="width:100%;height:100%;box-sizing:border-box;position:relative;border:2px solid white;border-radius:0px;background-color:#fff1d1;overflow-y:auto;padding:100px;">
+<div style="width:100%;height:100%;box-sizing:border-box;position:relative;border:2px solid white;border-radius:0px;background-color:#fff;overflow-y:auto;padding:50px;">
 
 
 
 
-<div id="propneut_main_popup_content_table" style="position:relative;height:100%;">
+<div id="propneut_main_popup_content_table" class="wrapper_pn" style="position:relative;height:100%;">
 <div>
-<img style="width:140px;position:absolute;bottom:-80px;right:-80px;" src="<propneut_base_url>/images/logo.png"/>
+<!--img style="width:140px;position:absolute;bottom:-80px;right:-80px;" src="<propneut_base_url>/images/logo.png"/-->
 <div id="alternatives_list_div">
 </div>
 </div>   
   
 </div>
-
-
-<!--img id="open_info_image" style="width:50px;cursor:pointer;vertical-align:middle;margin-left:20px;position:relative;top:-5px;" src="<propneut_base_url>/images/icon_info.png" onclick="propneut_openInfoDiv();"/-->
-<!--img id="open_settings_image" style="width:50px;cursor:pointer;vertical-align:middle;margin-left:20px;position:relative;top:-5px;" src="<propneut_base_url>/images/settings2.png" onclick="window.open('<propneut_base_url>/extension_pages/edit_extension_settings.php');"/-->
-
-  
-
 </div> 
 
 <img style="position:absolute;top:-15px;right:-15px;width:50px;cursor:pointer;" src="<propneut_base_url>/images/close.png" id="popup_close_image" onclick="propneut_closePopup();"/>
