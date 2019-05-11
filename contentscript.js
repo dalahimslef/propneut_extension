@@ -33,8 +33,9 @@ chrome.runtime.onMessage.addListener(
   }
   
   function insertPropneutScriptsAndHTML(){
+	  console.log('insertPropneutScriptsAndHTML');
 	  chrome.runtime.sendMessage({insert_propneut_scripts_and_html:true}, function(response) {
-		  //console.log(response.message);
+		  console.log('response:'+response.message);
 	  });
   }
   

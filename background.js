@@ -2,7 +2,6 @@ var insertscripts='';
 var settingsPageScript='';
 var popupContent='';
 var insertHTML='';
-
 var insertData={};
 propneut_getSessionCookie();//Load session id. When the session id is loaded in the function propneut_dataLoaded, the script continues...
 chrome.tabs.onUpdated.addListener(propneut_insertSettingScript); 
@@ -18,17 +17,32 @@ function propneut_insertSettingScript(tabId, changeInfo, tab){
 }
 
 function insertPropneutScriptsAndHtml(tabId){
-	var settingsJsString=propneut_getSettingsAsJsString();
-	
-	var dataToInsert='';
-	dataToInsert=dataToInsert+'<script type="text/javascript">'+"\n";
-	dataToInsert=dataToInsert+'document.cookie="'+insertData.session_cookie.session_name+'='+insertData.session_cookie.session_id+'";'+"\n";
-	dataToInsert=dataToInsert+settingsJsString;
-	dataToInsert=dataToInsert+insertData.insertscripts+'</script>'+"\n";
-	dataToInsert=dataToInsert+insertData.insertHTML;
-	chrome.tabs.sendMessage(tabId, {insert_html_in_page: dataToInsert, delete_id:'', delete_class:''}, function(response){});
+	//This function might get called before session data is loaded.
+	//In that case set the function to be called when we are ready...
+	if(typeof insertData.session_cookie == 'undefined'){
+		console.log('insertPropneutScriptsAndHtml: session_cookie not yet loaded for tab '+tabId);
+	}
+	else{
+		var settingsJsString=propneut_getSettingsAsJsString();
+		var dataToInsert='';
+		dataToInsert=dataToInsert+'<script type="text/javascript">'+"\n";
+		dataToInsert=dataToInsert+'document.cookie="'+insertData.session_cookie.session_name+'='+insertData.session_cookie.session_id+'";'+"\n";
+		dataToInsert=dataToInsert+settingsJsString;
+		dataToInsert=dataToInsert+insertData.insertscripts+'</script>'+"\n";
+		dataToInsert=dataToInsert+insertData.insertHTML;
+		chrome.tabs.sendMessage(tabId, {insert_html_in_page: dataToInsert, delete_id:'', delete_class:''}, function(response){});
+	}
 }
 
+function propneut_postInsertScriptsAndHtml(){
+	console.log('propneut_postInsertScriptsAndHtml...');
+	chrome.tabs.getAllInWindow(null, function(tabs){
+       for (var i = 0; i < tabs.length; i++) {
+	      insertPropneutScriptsAndHtml(tabs[i].id);
+		  console.log('insertPropneutScriptsAndHtml in '+tabs[i]);		  
+       }
+    });
+}
 
 function propneut_loadData(url, key, type){
 	jQuery.ajax({
@@ -42,12 +56,15 @@ function propneut_loadData(url, key, type){
 }
 
 function propneut_dataLoaded(data, textStatus, jqXHR, key){
+	console.log('propneut_dataLoaded');
 	if(key=='session_cookie'){
+		console.log('session_cookie loaded:'+JSON.stringify(data));
 		insertData[key]=data;
 		//Session id is loaded. Now we can load the rest.
 		propneut_loadData(chrome.runtime.getURL('insert_files/inject.js'), 'insertscripts', 'text');
 		propneut_loadData(chrome.runtime.getURL('insert_files/inject.html'), 'insertHTML', 'text');
 		propneut_loadData(chrome.runtime.getURL('insert_files/extension_settings.js'), 'settingsPageScript', 'text');
+		propneut_postInsertScriptsAndHtml();
 	}
 	else{
 		data=propneut_replaceInString(data,'<propneut_base_url>', propneut_base_url);
@@ -57,6 +74,8 @@ function propneut_dataLoaded(data, textStatus, jqXHR, key){
 }
 
 function propneut_dataLoadFailed(jqXHR, textStatus, errorThrown ){
+	console.log(errorThrown);
+	console.log(jqXHR.responseText);
 }
 
 
@@ -64,6 +83,7 @@ function propneut_getSessionCookie(){
 	var d = new Date();
 	var currentTimestamp = d.getTime();
 	var url=config.get_insertscripts_url+'?currenttime='+currentTimestamp;
+	console.log('load session_cookie');
 	propneut_loadData(url, 'session_cookie', 'json')
 }
 
@@ -71,6 +91,7 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
 	 if(request.insert_propneut_scripts_and_html!=undefined){
 		insertPropneutScriptsAndHtml(sender.tab.id);
+		sendResponse({message: 'html and scripts inserted'});
 	}
 	if(request.load_setting!=undefined){
 	  var loadedValue=localStorage.getItem(request.load_setting);
