@@ -1,6 +1,10 @@
 <!--link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Slabo 27px"-->
 
 <style type="text/css">
+.reset-pn{
+	all: unset;
+}
+
 .wrapper_pn {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -75,11 +79,57 @@
     border: 1px solid transparent;
     border-radius: .25rem;
 }
+
+
+.btn-primary-pn {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+
+
+.btn-pn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding-left: 10px;
+	padding-right: 10px;
+	margin-left:30px;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.customfont_pn{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+}
 </style>
 
 
 
-<div class="propneut_propaganda_saver" id="propneut_badge" style="display:none;position:fixed;top:20px;left:20px;cursor:pointer;"><div style="position:relative;"><img id="badge_image" style="width:300px;" src="<propneut_base_url>/images/badge.png" onclick="propneut_openPopup();"/><img id="badge_closer_image" style="width:30px;position:absolute;left:240px;top:100px;" src="<propneut_base_url>/images/badge_close.png" onclick="propneut_closeBadge();"/></div></div>
+<div class="propneut_propaganda_saver" id="propneut_badge" style="display:none;position: fixed;top: 0px;left: 0px;cursor: pointer;width: 100%;height: 50px;box-sizing: border-box;background-color: #ff3b00;padding:10px;color:white;">
+<div style="position:relative;">
+<img id="badge_closer_image" style="height:15px;margin-left:10px;vertical-align:middle;float:left;margin-top: 7px;" src="<propneut_base_url>/images/white_close.png" onclick="propneut_closeBadge();"/>
+<img id="badge_closer_image" style="height:30px;margin-left:10px;vertical-align:middle;float:right;" src="<propneut_base_url>/images/logo_text.png" onclick="propneut_closeBadge();"/>
+<img id="badge_image" style="height:30px;margin-left:10px;vertical-align:middle;float:right;" src="<propneut_base_url>/images/logo_spiral_white.png" onclick="propneut_openPopup();"/>
+
+<span class="customfont_pn" style="margin-left: 50px;">
+This page contains disputed content!
+</span>
+<button type="button" class="reset-pn btn-pn btn-primary-pn">More info</button>
+</div>
+</div>
+
 <div class="propneut_propaganda_saver" id="propneut_stamp" style="display:none;position:absolute;top:100px;left:100px;pointer-events:none;"><img id="propneut_stamp_image" style="opacity:1;filter:alpha(opacity=100);width:300px;" src="<propneut_base_url>/images/stamp.png"/></div>
 
 
