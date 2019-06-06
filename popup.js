@@ -337,7 +337,7 @@ function propneut_getTopicTag(){
 }
 
 function propneut_openLoginPage(){
-	var url=config.loginwindow_url;
+	var url=config.loginwindow_url+'?redirect_to=login_from_extension';
 	chrome.tabs.create({ url: url });
 }
 

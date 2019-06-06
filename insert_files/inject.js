@@ -480,7 +480,7 @@ function propneut_getAlternativesHTML(data){
 	returnHTML=returnHTML+'<div>';
 	//if(data.alternatives_div.total_alternatives_count>data.alternatives_div.display_list_count){
 		returnHTML=returnHTML+'<p class="card-text">[ Showing top '+data.alternatives_div.display_list_count+' of '+data.alternatives_div.total_alternatives_count+' suggested links ]</p>';
-		returnHTML=returnHTML+'<a href="javascript:void(0);"  class="card-link" id="open_alternatives_list_div" p_url="'+data.alternatives_div.p_url+'" t_ident="'+data.alternatives_div.t_ident+'" onclick="propneut_openAlternativesList();">See the whole list</a><br>';
+		returnHTML=returnHTML+'<a href="javascript:void(0);"  class="card-link" style="color:blue;" id="open_alternatives_list_div" p_url="'+data.alternatives_div.p_url+'" t_ident="'+data.alternatives_div.t_ident+'" onclick="propneut_openAlternativesList();">See the whole list</a><br>';
 	//}
 	/*
 	returnHTML=returnHTML+'<div>';
@@ -488,7 +488,7 @@ function propneut_getAlternativesHTML(data){
     returnHTML=returnHTML+'<span onclick="window.open(\''+data.alternatives_div.edit_ranking_url+'\');">here</span>';
     returnHTML=returnHTML+'</div>';
 	*/
-	returnHTML=returnHTML+'<a href="javascript:void(0);"  class="card-link" onclick="window.open(\''+data.alternatives_div.edit_ranking_url+'\');">Help edit list</a>';
+	returnHTML=returnHTML+'<a href="javascript:void(0);"  class="card-link" style="color:blue;" onclick="window.open(\''+data.alternatives_div.edit_ranking_url+'\');">Help edit list</a>';
 	
 	returnHTML=returnHTML+'</div>';
 	
@@ -501,8 +501,9 @@ function propneut_getAlternativesHTML(data){
 
 ///////////////////////// add_event_listeners
 
-jQuery('#badge_image').click(propneut_openPopup);
+//jQuery('#badge_image').click(propneut_openPopup);
 jQuery('#popup_close_image').click(propneut_closePopup);
+jQuery('#popup_opener').click(propneut_openPopup);
 jQuery('#open_info_image').click(propneut_openInfoDiv);
 jQuery('#close_info_image').click(propneut_closeInfoDiv);
 jQuery('#badge_closer_image').click(propneut_closeBadge);  

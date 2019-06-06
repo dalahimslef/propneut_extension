@@ -117,16 +117,16 @@
 
 
 
-<div class="propneut_propaganda_saver" id="propneut_badge" style="display:none;position: fixed;top: 0px;left: 0px;cursor: pointer;width: 100%;height: 50px;box-sizing: border-box;background-color: #ff3b00;padding:10px;color:white;">
-<div style="position:relative;">
-<img id="badge_closer_image" style="height:15px;margin-left:10px;vertical-align:middle;float:left;margin-top: 7px;" src="<propneut_base_url>/images/white_close.png" onclick="propneut_closeBadge();"/>
-<img id="badge_closer_image" style="height:30px;margin-left:10px;vertical-align:middle;float:right;" src="<propneut_base_url>/images/logo_text.png" onclick="propneut_closeBadge();"/>
-<img id="badge_image" style="height:30px;margin-left:10px;vertical-align:middle;float:right;" src="<propneut_base_url>/images/logo_spiral_white.png" onclick="propneut_openPopup();"/>
+<div class="propneut_propaganda_saver" id="propneut_badge" style="display:none;position: fixed;top: 0px;left: 0px;width: 100%;height: 50px;box-sizing: border-box;background-color: #ff3b00;padding:10px;color:white;">
+<div style="position:relative;text-align:center;">
+<img id="badge_closer_image" style="height:15px;margin-left:10px;vertical-align:middle;float:left;margin-top: 7px;cursor:pointer;" src="<propneut_base_url>/images/white_close.png" onclick="propneut_closeBadge();"/>
+<img style="height:30px;margin-left:10px;vertical-align:middle;float:right;" src="<propneut_base_url>/images/logo_text.png" />
+<img id="badge_image" style="height:30px;margin-left:10px;vertical-align:middle;float:right;" src="<propneut_base_url>/images/logo_spiral_white.png" />
 
-<span class="customfont_pn" style="margin-left: 50px;">
+<span class="customfont_pn">
 This page contains disputed content!
 </span>
-<button type="button" class="reset-pn btn-pn btn-primary-pn">More info</button>
+<button id="popup_opener" type="button" class="reset-pn btn-pn btn-primary-pn" style="color:white;cursor:pointer;" onclick="propneut_openPopup();">More info</button>
 </div>
 </div>
 
