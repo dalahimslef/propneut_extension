@@ -280,6 +280,8 @@ function post_neutralizer(eventObject){
 		  success: function(data, textStatus, jqXHR){propneut_post_neutralizer_success(data, textStatus, jqXHR, propaganda, antidote)},
 		  error: propneut_post_neutralizer_error,
 		});
+		jQuery('#post_button_wrapper').css('display','none');
+		jQuery('#post_spinner_wrapper').css('display','');
 	}	
 }
 
