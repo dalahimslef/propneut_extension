@@ -1,6 +1,7 @@
 //var propneut_base_url='http://localhost/propneut';
 var propneut_base_url='https://www.propneut.com';
 //var propneut_base_url='http://laravel.local';
+//var propneut_base_url='http://pnt.dala';
 var config={
   'popup_loginwindow_url':propneut_base_url+'/includes/popup_loginwindow/popup_loginwindow.php',
   'loginwindow_url':propneut_base_url+'/login',
