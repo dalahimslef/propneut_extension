@@ -36,7 +36,8 @@ function insertPropneutScriptsAndHtml(tabId){
 
 function propneut_postInsertScriptsAndHtml(){
 	console.log('propneut_postInsertScriptsAndHtml...');
-	chrome.tabs.getAllInWindow(null, function(tabs){
+	//chrome.tabs.getAllInWindow(null, function(tabs){
+	chrome.tabs.query({}, function(tabs){
        for (var i = 0; i < tabs.length; i++) {
 	      insertPropneutScriptsAndHtml(tabs[i].id);
 		  console.log('insertPropneutScriptsAndHtml in '+tabs[i]);		  
